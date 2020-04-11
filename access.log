@@ -1,0 +1,7 @@
+::1 - - [11/Apr/2020:15:49:15 +0000] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
+::1 - - [11/Apr/2020:17:05:46 +0000] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
+::1 - - [11/Apr/2020:18:48:58 +0000] "GET /api/v1/church HTTP/1.1" 404 45 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
+::1 - - [11/Apr/2020:18:48:58 +0000] "GET /favicon.ico HTTP/1.1" 404 45 "http://localhost:5000/api/v1/church" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
+::1 - - [11/Apr/2020:18:49:22 +0000] "GET /api/v1/church/biblevereses HTTP/1.1" 404 45 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
+::1 - - [11/Apr/2020:18:49:59 +0000] "GET /api/v1/church/bibleverses HTTP/1.1" 200 - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
+::1 - - [11/Apr/2020:18:51:34 +0000] "GET /api/v1/church/bibleverse/4 HTTP/1.1" 200 385 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
