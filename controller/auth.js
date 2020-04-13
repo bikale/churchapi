@@ -10,7 +10,10 @@ exports.login = async (req, res, next) => {
 
   // Validate email & password
   if (!email || !password) {
-    res.json({ success: false, data: 'Please provide an email and password' });
+    res.status(400).json({
+      success: false,
+      errMessage: 'Please provide an email and password',
+    });
     return;
   }
 
@@ -18,14 +21,18 @@ exports.login = async (req, res, next) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    res.json({ success: false, data: 'Invalid Username and Password' });
+    res
+      .status(400)
+      .json({ success: false, errMessage: 'Invalid Username and Password' });
     return;
   }
 
   //Match user entered password to hashed password in database
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    res.json({ success: false, data: 'Invalid Username and Password' });
+    res
+      .status(400)
+      .json({ success: false, errMessage: 'Invalid Username and Password' });
     return;
   }
 
@@ -42,5 +49,6 @@ exports.login = async (req, res, next) => {
       expires: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000), // 15 days from now
       secure: false,
     })
+    .status(200)
     .json({ success: true, token: token });
 };
