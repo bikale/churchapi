@@ -21,6 +21,7 @@ dotenv.config({ path: './config/config.env' });
 
 //route file
 const bible = require('./routes/bibleverse');
+const auth = require('./routes/auth');
 
 const app = express();
 
@@ -64,6 +65,7 @@ app.use(morgan('combined', { stream: accessLogStream }));
 
 //Mount router
 
+app.use('/api/v1/church', auth);
 app.use('/api/v1/church', bible);
 
 //404 handler
