@@ -28,7 +28,7 @@ exports.protect = async (req, res, next) => {
     return next();
   } catch (err) {
     return res
-      .status(401)
+      .status(400)
       .json({ success: false, data: 'Not authorized to access this route' });
   }
 };
@@ -38,7 +38,7 @@ exports.authorize = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.roles)) {
       return res
-        .status(403)
+        .status(400)
         .json({
           success: false,
           data: 'User role is not authorized to access this route',

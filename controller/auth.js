@@ -41,11 +41,11 @@ exports.login = async (req, res, next) => {
     expiresIn: process.env.JWT_EXPIRE,
   });
 
-  // assiging the redirect page after login by the roles
+  
 
   //create cookie and send response
   res
-    .cookie('token', token, {
+    .cookie('churchtoken', token, {
       expires: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000), // 15 days from now
       secure: false,
     })

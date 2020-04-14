@@ -63,8 +63,8 @@ app.use(limiter);
 //Prevent http param pollution
 app.use(hpp());
 
-//Enable CORS
-app.use(cors());
+// //Enable CORS
+// app.use(cors());
 
 //Set morgan logger middleware
 const accessLogStream = fs.createWriteStream(
