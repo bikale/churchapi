@@ -22,6 +22,7 @@ dotenv.config({ path: './config/config.env' });
 //route file
 const bible = require('./routes/bibleverse');
 const auth = require('./routes/auth');
+const shop = require('./routes/shop');
 
 const app = express();
 
@@ -77,6 +78,7 @@ app.use(morgan('combined', { stream: accessLogStream }));
 
 app.use('/api/v1/church', auth);
 app.use('/api/v1/church', bible);
+app.use('/api/v1/church', shop);
 
 //404 handler
 app.use((req, res, next) => {

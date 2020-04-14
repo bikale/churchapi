@@ -7,6 +7,7 @@ const BibleVerse = require('../models/Bibleverse');
 // @access    Public
 
 exports.getAllBibleVerse = async (req, res, next) => {
+
   const verses = await BibleVerse.find();
   res.status(200).json({ success: true, data: verses });
 };
