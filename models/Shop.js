@@ -22,9 +22,22 @@ const shopItemSchema = new Schema({
     type: String,
     required: true,
   },
+  comments: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+      },
+      text: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   rate: {
     type: Number,
-    required: true,
+    default: 5,
   },
 });
 
