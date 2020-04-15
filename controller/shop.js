@@ -52,14 +52,18 @@ exports.storeUserComment = async (req, res, next) => {
 
 exports.addToCart = async (req, res, next) => {
   const productId = req.body.productid;
-  console.log(productId, 'addToCart');
+
   const id = req.user._id; // Get current user id
 
   const currentUser = await User.findById(id);
 
-  currentUser.addItemToCart(productId).then((result) => {
-    console.log(result, 'addToCart result');
-    res.json({ success: true });
+  currentUser.addItemToCart(productId).then(async (result) => {
+    let cartList = await currentUser
+      .populate('cart.items.productId')
+      .execPopulate();
+    cartList = cartList.cart.items;
+
+    res.json({ success: true, data: cartList });
   });
 };
 
@@ -71,11 +75,16 @@ exports.deleteCartItem = async (req, res, next) => {
   const productId = req.params.productid;
 
   const id = req.user._id;
-  const currentUser = await User.findById(id);
+  let currentUser = await User.findById(id);
 
-  currentUser.deleteItemFromCart(productId).then((result) => {
-    console.log(result, 'deleteCartItem');
-    res.json({ success: true });
+  currentUser.deleteItemFromCart(productId).then(async (result) => {
+    currentUser = await User.findById(id);
+    let cartList = await currentUser
+      .populate('cart.items.productId')
+      .execPopulate();
+    cartList = cartList.cart.items;
+
+    res.json({ success: true, data: cartList });
   });
 };
 
@@ -84,13 +93,12 @@ exports.deleteCartItem = async (req, res, next) => {
 // @access    Public
 
 exports.getUserCart = async (req, res, next) => {
-  console.log('back');
   const id = req.user._id;
   const currentUser = await User.findById(id);
   let cartList = await currentUser
     .populate('cart.items.productId')
     .execPopulate();
   cartList = cartList.cart.items;
-console.log(cartList,"getuser")
+
   res.json({ success: true, data: cartList });
 };

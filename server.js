@@ -23,6 +23,7 @@ dotenv.config({ path: './config/config.env' });
 const bible = require('./routes/bibleverse');
 const auth = require('./routes/auth');
 const shop = require('./routes/shop');
+const admin = require('./routes/admin');
 
 const app = express();
 
@@ -35,7 +36,10 @@ app.use(cookieParser());
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET,HEAD,OPTIONS,POST,PUT,DELETE'
+  );
   res.setHeader(
     'Access-Control-Allow-Headers',
     'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,Authorization'
@@ -95,6 +99,7 @@ app.use(morgan('combined', { stream: accessLogStream }));
 app.use('/api/v1/church', auth);
 app.use('/api/v1/church', bible);
 app.use('/api/v1/church', shop);
+app.use('/api/v1/church/admin', admin);
 
 //404 handler
 app.use((req, res, next) => {
