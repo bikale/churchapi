@@ -4,7 +4,7 @@
   "description": "back end api for the church api",
   "main": "server",
   "scripts": {
-    "start": "set NODE_ENV = production & nodemon server",
+    "start": "set NODE_ENV = production & node server",
     "dev": "nodemon server"
   },
   "author": "hashcoders",
