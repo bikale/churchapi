@@ -19,7 +19,11 @@ exports.getShopItems = async (req, res, next) => {
 exports.getShopItem = async (req, res, next) => {
   const item_id = req.params.item_id;
   const shopitem = await Shop.findById(item_id);
+
+  console.log(shopitem);
+
   await shopitem.populate('comments.user').execPopulate();
+
 
   if (!shopitem) {
     res.status(404).json({ success: false, data: 'Resource not found' });
