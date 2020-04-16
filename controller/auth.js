@@ -83,5 +83,5 @@ exports.login = async (req, res, next) => {
       secure: false,
     })
     .status(200)
-    .json({ success: true, token: token });
+    .json({ success: true, token: token, role: user.roles });
 };

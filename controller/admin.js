@@ -51,10 +51,28 @@ exports.getbook = (req, res, next) => {
 };
 
 exports.deletsinglebook = (req, res, next) => {
-  console.log(req.params.id, 'de');
+
   Shop.deleteOne({ _id: ObjectId(req.params.id) })
     .then((result) => {
       res.status(200).json({ success: true, msg: 'deleted succesfully' });
+    })
+    .catch((err) => {
+      res.status(404).json(err);
+    });
+};
+
+exports.updatebook = (req, res, next) => {
+
+  Shop.findByIdAndUpdate(req.params.id, {
+    imageurl: req.body.imageurl,
+    title: req.body.title,
+    author: req.body.author,
+    price: +req.body.price,
+    description: req.body.description,
+  })
+    .then((result) => {
+     
+      res.status(200).json({ success: true, data: result });
     })
     .catch((err) => {
       res.status(404).json(err);
