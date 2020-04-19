@@ -1,29 +1,29 @@
-const fs = require("fs");
-const path = require("path");
-const express = require("express");
+const fs = require('fs');
+const path = require('path');
+const express = require('express');
 
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const cookieParser = require("cookie-parser");
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 
-const helmet = require("helmet");
-const compression = require("compression");
-const morgan = require("morgan");
-const mongoSanitize = require("express-mongo-sanitize");
-const xss = require("xss-clean");
-const rateLimit = require("express-rate-limit");
-const hpp = require("hpp");
-const cors = require("cors");
+const helmet = require('helmet');
+const compression = require('compression');
+const morgan = require('morgan');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const rateLimit = require('express-rate-limit');
+const hpp = require('hpp');
+const cors = require('cors');
 
 //load env vars
-dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: './config/config.env' });
 
 //route file
-const bible = require("./routes/bibleverse");
-const auth = require("./routes/auth");
-const shop = require("./routes/shop");
-const admin = require("./routes/admin");
+const bible = require('./routes/bibleverse');
+const auth = require('./routes/auth');
+const shop = require('./routes/shop');
+const admin = require('./routes/admin');
 
 const app = express();
 
@@ -34,15 +34,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET,HEAD,OPTIONS,POST,PUT,DELETE"
+    'Access-Control-Allow-Methods',
+    'GET,HEAD,OPTIONS,POST,PUT,DELETE'
   );
   res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,Authorization"
+    'Access-Control-Allow-Headers',
+    'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,Authorization'
   );
 
   next();
@@ -89,23 +89,23 @@ app.use(hpp());
 
 //Set morgan logger middleware
 const accessLogStream = fs.createWriteStream(
-  path.join(__dirname, "access.log"),
-  { flags: "a" }
+  path.join(__dirname, 'access.log'),
+  { flags: 'a' }
 );
-app.use(morgan("combined", { stream: accessLogStream }));
+app.use(morgan('combined', { stream: accessLogStream }));
 
 //Mount router
 
-app.use("/api/v1/church", auth);
-app.use("/api/v1/church", bible);
-app.use("/api/v1/church", shop);
-app.use("/api/v1/church/admin", admin);
+app.use('/api/v1/church', auth);
+app.use('/api/v1/church', bible);
+app.use('/api/v1/church', shop);
+app.use('/api/v1/church/admin', admin);
 
 //404 handler
 app.use((req, res, next) => {
   res.status(404).json({
     success: false,
-    data: "Resource Not Found",
+    data: 'Resource Not Found',
   });
 });
 
