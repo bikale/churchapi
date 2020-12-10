@@ -1,7 +1,7 @@
 # churchapi
 
-> Backend api for church app
-> check it here [https://eotcchurch.herokuapp.com/](https://eotcchurch.herokuapp.com/)
+> Backend api for church app <br>
+> Check The React app here [https://eotcchurch.herokuapp.com/](https://eotcchurch.herokuapp.com/)
 
 ## Technology Used
 
@@ -22,4 +22,5 @@
 ## Basic public api
 
 > get bible verses [https://eotcchurch.herokuapp.com/api/v1/church/bibleverses](https://eotcchurch.herokuapp.com/api/v1/church/bibleverses)
+> </br>
 > get single bible verse with id [https://eotcchurch.herokuapp.com/api/v1/church/bibleverse/2](https://eotcchurch.herokuapp.com/api/v1/church/bibleverse/2)
